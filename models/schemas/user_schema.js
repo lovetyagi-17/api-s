@@ -2,10 +2,10 @@ const db  = require('../db');
 
 
 var Schema = db.Schema({
-  f_name: {type:String,require:true,trim:true},
-  l_name: {type:String,require:true,trim:true},
-  email: {type:String,require:true,trim:true},
-  password:{type:String,require:true,trim:true},
+  f_name: {type:String,required:true,trim:true},
+  l_name: {type:String,required:true,trim:true},
+  email: {type:String,required:true,trim:true},
+  password:{type:String,required:true,trim:true},
   products:{type:Array}
 });
 

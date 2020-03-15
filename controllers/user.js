@@ -1,5 +1,7 @@
 var db = require('../models/user')
 var jwt = require('jsonwebtoken')
+const { check, validationResult } = require('express-validator');
+
 
 exports.users = (req,res)=>{
   
@@ -11,7 +13,6 @@ exports.users = (req,res)=>{
   else{
     res.send({"success":false,"status":400,"message":'no any user',"data":[]})
   }
-
  })}
 
 
@@ -51,7 +52,6 @@ exports.delete_user = (req,res)=>{
 
 
 
-
 exports.update_user = (req,res)=>{
     
   var u_id;
@@ -82,12 +82,12 @@ exports.update_user = (req,res)=>{
 exports.get_user = (req,res)=>{
   var u_id;
 
-  jwt.verify(req.headers.token, 'secretkey', function(err, decoded){
-    if(!err){
-        u_id = decoded._id
+  // jwt.verify(req.headers.token, 'secretkey', function(err, decoded){
+  //   if(!err){
+  //       u_id = decoded._id
         
-    } 
-      })
+  //   } 
+  //     })
       
     db.findOne({_id: u_id},function (err, data) {
     if (data === null) {

@@ -1,5 +1,6 @@
 var express = require('express');
 var authController = require('../controllers/auth')
+var authProduct = require('../controllers/products')
 var router = express.Router();
 const jwt = require('jsonwebtoken')
 
@@ -7,6 +8,13 @@ router
     .route('/auth/register')
     .post(authController.register);
 
+router  
+    .route('/all/products')
+    .get(authProduct.show_product);
+
+router  
+    .route('/products')
+    .post(authProduct.create_product);
 
 
 router
@@ -35,7 +43,7 @@ router.use(checkAuth)
 
 
 
-require('./products')(router)
+
 
 require('./reviews')(router)
 

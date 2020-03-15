@@ -7,13 +7,14 @@ var Product = require('../models/products')
 
 exports.create_product = (req,res)=>{
 var u_id;
-jwt.verify(req.headers.token,'secretkey',function(err,data){
-  if(!err){
-      u_id = data._id
-  }
-})
+// /*jwt.verify(req.headers.token,'secretkey',function(err,data)*/
+// {
+//   if(!err){
+//       u_id = data._id
+//   }
+// }
 
-var content = JSON.parse(req.body.toString())
+var content = req.body
 
 
 
@@ -63,7 +64,7 @@ exports.delete_product = (req,res)=>{
 exports.update_product = (req,res)=>{
     
     var pro_id = req.params.id
-    var content = JSON.parse(req.body.toString())
+    var content = req.body
     db_product.findOneAndUpdate({_id: pro_id },content,{new: true},function (err, doc) {
            if (doc === null) {
 
